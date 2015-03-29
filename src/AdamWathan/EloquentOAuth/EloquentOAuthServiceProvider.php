@@ -11,7 +11,7 @@ class EloquentOAuthServiceProvider extends ServiceProvider {
         'google' => 'AdamWathan\\EloquentOAuth\\Providers\\GoogleProvider',
         'linkedin' => 'AdamWathan\\EloquentOAuth\\Providers\\LinkedInProvider',
         'instagram' => 'AdamWathan\\EloquentOAuth\\Providers\\InstagramProvider',
-        );
+    );
 
     /**
      * Indicates if loading of the provider is deferred.
