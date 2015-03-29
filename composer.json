@@ -1,5 +1,5 @@
 {
-    "name": "adamwathan/eloquent-oauth",
+    "name": "adamwathan/eloquent-oauth-l4",
     "description": "Stupid simple OAuth authentication with Laravel and Eloquent",
     "authors": [
     {
@@ -10,22 +10,13 @@
     "license": "MIT",
     "require": {
         "php": ">=5.4.0",
-        "illuminate/auth": "4.*",
-        "illuminate/session": "4.*",
-        "illuminate/database": "4.*",
-        "illuminate/support": "4.*",
+        "adamwathan/eloquent-oauth": "dev-aw-socialnorm",
         "guzzlehttp/guzzle": "~5.0"
-    },
-    "require-dev": {
-        "mockery/mockery": "0.8.0"
     },
     "autoload": {
         "psr-0": {
-            "AdamWathan\\EloquentOAuth\\": "src/"
-        },
-        "classmap": [
-            "tests/FunctionalTestCase.php"
-        ]
+            "AdamWathan\\EloquentOAuthL4\\": "src/"
+        }
     },
     "minimum-stability": "dev"
 }
