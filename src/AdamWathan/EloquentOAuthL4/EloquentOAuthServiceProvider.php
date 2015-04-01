@@ -62,7 +62,7 @@ class EloquentOAuthServiceProvider extends ServiceProvider {
             $this->registerProviders($socialnorm, $request);
 
             $users = new UserStore($app['config']['auth.model']);
-            $authenticator = new Authenticator($app['Illuminate\Contracts\Auth\Guard'], $users, new IdentityStore);
+            $authenticator = new Authenticator($app['auth'], $users, new IdentityStore);
 
             $oauth = new OAuthManager($app['redirect'], $authenticator, $socialnorm);
             return $oauth;
