@@ -1,9 +1,6 @@
-# Eloquent OAuth
+# Eloquent OAuth L4
 
-[![Code Climate](https://codeclimate.com/github/adamwathan/eloquent-oauth/badges/gpa.svg)](https://codeclimate.com/github/adamwathan/eloquent-oauth)
-[![Build Status](https://api.travis-ci.org/adamwathan/eloquent-oauth.svg)](https://travis-ci.org/adamwathan/eloquent-oauth)
-
-> Note: Check the [Laravel 5 branch](https://github.com/adamwathan/eloquent-oauth/tree/laravel-5) if you are using Laravel 5.
+> Note: Use the [Laravel 5 package](https://github.com/adamwathan/eloquent-oauth-l5) if you are using Laravel 5.
 
 Eloquent OAuth is a package for Laravel 4 designed to make authentication against various OAuth providers *ridiculously* brain-dead simple. Specify your app keys/secrets in a config file, run a migration and from then on it's just two method calls and you have OAuth integration.
 
@@ -64,22 +61,21 @@ object that contains basic information from the OAuth provider, including:
 
 - User ID
 - Nickname
-- First Name
+- Full Name
 - Last Name
 - Email
-- Image URL
-- Access Token
+- Avatar URL
 
 ```php
 OAuth::login('facebook', function($user, $details) {
     $user->nickname = $details->nickname;
-    $user->name = $details->firstName . ' ' . $details->lastName;
-    $user->profile_image = $details->imageUrl;
+    $user->name = $details->fullName;
+    $user->profile_image = $details->avatar;
     $user->save();
 });
 ```
 
-> Note: The Instagram API does not allow you to retrieve the user's email address, so unfortunately that field will always be `null` for the Instagram provider.
+> Note: The Instagram and Soundcloud APIs do not allow you to retrieve the user's email address, so unfortunately that field will always be `null` for those providers.
 
 ## Supported Providers
 
@@ -88,6 +84,7 @@ OAuth::login('facebook', function($user, $details) {
 - Google
 - LinkedIn
 - Instagram
+- Soundcloud
 
 >The package is still in it's early infancy obviously. Support will be added for other providers as time goes on.
 
@@ -95,18 +92,16 @@ OAuth::login('facebook', function($user, $details) {
 
 ## Installation
 
-Require this package in your `composer.json` file to install via Packagist:
+Require this package using Composer in your terminal:
 
-`"adamwathan/eloquent-oauth": "~4.0"`
-
-...then run `composer update` to download the package to your vendor directory.
+`composer require adamwathan/eloquent-oauth-l4`
 
 Add the service provider to the `providers` array in `app/config/app.php`:
 
 ```php
 'providers' => array(
     // ...
-    'AdamWathan\EloquentOAuth\EloquentOAuthServiceProvider',
+    'AdamWathan\EloquentOAuthL4\EloquentOAuthServiceProvider',
     // ...
 )
 ```
@@ -123,16 +118,16 @@ Add the facade to the `aliases` array in `app/config/app.php`:
 
 Publish the configuration file:
 
-`php artisan config:publish adamwathan/eloquent-oauth`
+`php artisan config:publish adamwathan/eloquent-oauth-l4`
 
-Update your app information for the providers you are using in `app/config/packages/adamwathan/eloquent-oauth/config.php`:
+Update your app information for the providers you are using in `app/config/packages/adamwathan/eloquent-oauth-l4/config.php`:
 
 ```php
 'providers' => array(
     'facebook' => array(
-        'id' => '12345678',
-        'secret' => 'y0ur53cr374ppk3y',
-        'redirect' => URL::to('facebook/login'),
+        'client_id' => '12345678',
+        'client_secret' => 'y0ur53cr374ppk3y',
+        'redirect_uri' => URL::to('facebook/login'),
         'scope' => array(),
     )
 )
