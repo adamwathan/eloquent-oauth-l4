@@ -7,7 +7,7 @@ use SocialNorm\ProviderRegistry;
 use SocialNorm\Request;
 use SocialNorm\StateGenerator;
 use AdamWathan\EloquentOAuth\Authenticator;
-use AdamWathan\EloquentOAuth\IdentityStore;
+use AdamWathan\EloquentOAuth\EloquentIdentityStore;
 use AdamWathan\EloquentOAuth\Session;
 use AdamWathan\EloquentOAuth\OAuthIdentity;
 use AdamWathan\EloquentOAuth\OAuthManager;
@@ -62,7 +62,7 @@ class EloquentOAuthServiceProvider extends ServiceProvider {
             $this->registerProviders($socialnorm, $request);
 
             $users = new UserStore($app['config']['auth.model']);
-            $authenticator = new Authenticator($app['auth'], $users, new IdentityStore);
+            $authenticator = new Authenticator($app['auth'], $users, new EloquentIdentityStore);
 
             $oauth = new OAuthManager($app['redirect'], $authenticator, $socialnorm);
             return $oauth;
