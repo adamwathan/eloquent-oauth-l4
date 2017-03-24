@@ -143,7 +143,7 @@ If you need to change the name of the table used to store OAuth identities, you 
 Publish and run the migration:
 
 ```
-php artisan migrate:publish adamwathan/eloquent-oauth
+php artisan migrate:publish adamwathan/eloquent-oauth-l4
 php artisan migrate
 ```
 
